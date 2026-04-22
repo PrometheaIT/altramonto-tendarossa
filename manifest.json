@@ -1,0 +1,21 @@
+{
+  "name": "Al Tramonto - Tenda Rossa",
+  "short_name": "Al",
+  "description": "Ristorante sul mare a Trieste sulla Strada Costiera. Cucina di pesce, materie prime selezionate e vista mozzafiato sul Golfo al tramonto.",
+  "lang": "it-IT",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "theme_color": "#222222",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
