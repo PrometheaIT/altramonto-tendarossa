@@ -3,20 +3,31 @@
 :root {
   --font-family: 'Jost', sans-serif;
   --font-family-heading: 'Cormorant Garamond', serif;
+  --fs-mini: clamp(0.7rem, 0.5rem + 0.35vw, 1.8rem);
+  --fs-sm:   clamp(1rem,    0.68rem + 0.44vw, 2.1rem);
+  --fs-md:   clamp(1.12rem, 1.30rem + 1.20vw, 2.9rem);
+  --fs-lg: clamp(1.25rem, 1.15rem + 2.2vw, 5rem);
+  --fs-xl: clamp(1.5rem, 1.5rem + 4.5vw, 8rem);
+  --gap-sm: clamp(0.45rem, 0.75vw, 1rem);
+  --gap-md: clamp(0.75rem, 1.5vw, 1.5rem);
+  --gap-lg: clamp(1rem, 2vw, 2.5rem);
 
 
   --color-text-muted2: #383842;
   --color-border: #e8e4df;
   --color-navbar2: linear-gradient(0deg, var(--color-secondary), var(--color-primary), var(--color-primary) );
+  --gradiente: linear-gradient(135deg, var(--color-secondary), var(--color-primary));
 --color-card: linear-gradient(135deg, 
   color-mix(in srgb, var(--color-background) 92%, var(--color-secondary) 8%) 0%, 
   color-mix(in srgb, var(--color-background) 82%, var(--color-primary) 18%) 100%
 );  --color-surface: #faf9f7;
   --color-surface-raised: #f4f1ed;
+  --shadow: linear-gradient(155deg, #ffeed89f, var(--color-background), #ffeed89f);
 
+  --oro: #b8860b;
   --border-radius: 5px;
   --max-width: 100%;
-  --section-padding: 2rem 2rem;
+  --section-padding: clamp(1rem, 2vw, 2.5rem);
   --hero-overlay-opacity: 0.38;
 }
 
@@ -24,9 +35,15 @@
    BODY & TIPOGRAFIA BASE
    ================================================================ */
 body {
-  background: var(--color-background);
-  color: var(--color-text);
+background-color: var(--color-background);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(187, 100%, 86%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(199, 100%, 88%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(180, 48%, 90%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;  color: var(--color-text);
   font-family: var(--font-family);
+  font-size: var(--fs-sm);
   font-weight: 300;
   letter-spacing: 0.02em;
   -webkit-font-smoothing: antialiased;
@@ -42,47 +59,53 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 2.5rem;
-  background: var(--color-navbar2);
+  padding: var(--gap-sm) var(--gap-lg);
+  background: var(--shadow);
   backdrop-filter: blur(8px);
-  min-height: 5rem;
   -webkit-backdrop-filter: blur(8px);
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, transparent, var(--oro), transparent) 1;
 }
 
 .nav__logo {
   text-decoration: none;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: var(--gap-sm);
   flex-shrink: 0;
 }
 
 .nav__logo-img {
-  height: 38px;
+  height: var(--fs-md);
   width: auto;
   object-fit: contain;
 }
 
 .nav__logo-text {
   font-family: var(--font-family-heading);
-  font-weight: 800;
-  color: var(--color-tertiary);
-  font-size: 1.25rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-weight: 900;
+  font-size: var(--fs-md);
+  letter-spacing: 0.05em;
+}
+
+.gradient-text {
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 2.5rem;
+  gap: var(--gap-md);
 }
 
 .nav__link {
   text-decoration: none;
   color: var(--color-secondary);
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: var(--fs-mini);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: color 0.25s ease;
@@ -90,11 +113,11 @@ body {
 }
 
 .nav__link:hover {
-  color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .nav__link--active {
-  color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .nav__link--active::after {
@@ -125,7 +148,7 @@ body {
   display: block;
   height: 1px;
   width: 100%;
-  background: var(--color-text);
+  background: var(--gradiente);
   border-radius: 0;
   transition: transform 0.3s ease, opacity 0.3s ease;
   transform-origin: center;
@@ -155,7 +178,13 @@ body {
   width: 75vw;
   max-width: 300px;
   height: 100vh;
-  background: var(--color-navbar);
+background-color: var(--color-background);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(187, 100%, 86%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(199, 100%, 88%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(180, 48%, 90%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;  color: var(--color-text);
   padding: 5rem 2rem 2rem;
   display: flex;
   flex-direction: column;
@@ -164,7 +193,6 @@ body {
 }
 
 .nav__mobile-menu .nav__link {
-  font-size: 0.85rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.85rem 0;
@@ -196,7 +224,6 @@ body {
   border-radius: var(--border-radius);
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
@@ -215,12 +242,11 @@ body {
   display: inline-block;
   padding: 0.9rem 2.5rem;
   background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
+  background: var(--color-card);
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
@@ -229,9 +255,9 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: #fff;
-  color: #fff;
+  background: var(--shadow);
+  border-color: var(--color-primary);
+  color: var(--oro);
 }
 
 .btn-link {
@@ -239,7 +265,6 @@ body {
   border: none;
   color: var(--color-primary);
   font-family: var(--font-family);
-  font-size: 0.78rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   cursor: pointer;
@@ -260,7 +285,7 @@ section {
 
 section h2 {
   font-family: var(--font-family-heading);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: var(--fs-md);
   font-weight: 400;
   text-align: center;
   margin-bottom: 3rem;
@@ -283,12 +308,15 @@ section h2 {
 
 .section-title {
   font-family: var(--font-family-heading);
-  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 400;
-  color: var(--color-text);
-  margin: 0 0 1rem;
+  font-size: var(--fs-md);
+  font-weight: 700;
+  margin-bottom: var(--gap-md);
   letter-spacing: 0.04em;
   line-height: 1.2;
+  background: var(--gradiente);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .divider {
@@ -299,7 +327,6 @@ section h2 {
 }
 
 .description-text {
-  font-size: 1rem;
   color: var(--color-text-muted2);
   line-height: 1.9;
   font-weight: 400;
@@ -314,7 +341,6 @@ section h2 {
   border: none;
   color: var(--color-secondary);
   font-family: var(--font-family);
-  font-size: 0.75rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   cursor: pointer;
@@ -371,7 +397,7 @@ section h2 {
 
 .hero--bg-image .hero__title {
   font-family: var(--font-family-heading);
-  font-size: clamp(3rem, 7vw, 6rem);
+  font-size: var(--fs-xl);
   font-weight: 300;
   color: #fff;
   line-height: 1.05;
@@ -393,7 +419,6 @@ section h2 {
 
 .hero--bg-image .hero__description {
   color: rgba(255, 255, 255, 0.82);
-  font-size: 1rem;
   font-weight: 300;
   max-width: 520px;
   line-height: 1.8;
@@ -413,12 +438,36 @@ section h2 {
   background: var(--color-background);
 }
 
+
+
+.menu--list {
+  padding: 0 var(--fs-md);
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.menu-row:last-child { border-bottom: none; }
+
+.menu-row__left { flex: 1; }
+.menu-row__name { font-weight: 400; color: var(--color-text); margin-bottom: 0.25rem; }
+.menu-row__description { color: var(--color-text-muted); line-height: 1.5; }
+.menu-row__allergens { color: var(--color-text-muted); margin-top: 0.25rem; opacity: 0.7; }
+.menu-row__price { font-weight: 700; color: var(--color-primary); white-space: nowrap; padding-top: 2px; }
+
 /* ================================================================
    PROMOZIONI
    ================================================================ */
-#promozioni {
-  background: var(--color-surface);
-}
 
 .promos--grid {
   display: grid;
@@ -470,7 +519,6 @@ section h2 {
   display: inline-block;
   background: var(--color-primary);
   color: #fff;
-  font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -481,21 +529,18 @@ section h2 {
 
 .promo-card__name {
   font-family: var(--font-family-heading);
-  font-size: 1.2rem;
   font-weight: 600;
   color: var(--color-text);
   letter-spacing: 0.02em;
 }
 
 .promo-card__description {
-  font-size: 0.875rem;
   color: var(--color-text-muted2);
   line-height: 1.7;
   font-weight: 300;
 }
 
 .promo-card__expiry {
-  font-size: 0.72rem;
   color: var(--color-text-muted2);
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -505,9 +550,6 @@ section h2 {
 /* ================================================================
    MENU
    ================================================================ */
-#menu {
-  background: var(--color-background);
-}
 
 .menu__tabs {
   display: flex;
@@ -524,7 +566,6 @@ section h2 {
   background: transparent;
   color: var(--color-secondary);
   font-family: var(--font-family);
-  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -554,16 +595,18 @@ section h2 {
   background: transparent;
   color: var(--color-text-muted2);
   font-family: var(--font-family);
-  font-size: 0.75rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   cursor: pointer;
   transition: all 0.2s ease;
 }
-
-.menu__filter--active,
 .menu__filter:hover {
   background: var(--color-secondary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.menu__filter--active {
+  background: var(--color-primary);
   color: #fff;
   border-color: var(--color-secondary);
 }
@@ -582,7 +625,6 @@ section h2 {
   border: 1px solid var(--color-border);
   color: var(--color-text-muted2);
   text-decoration: none;
-  font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   border-radius: var(--border-radius);
@@ -652,7 +694,6 @@ section h2 {
 
 .menu-card__name {
   font-family: var(--font-family-heading);
-  font-size: 1.15rem;
   font-weight: 600;
   color: var(--color-text);
   letter-spacing: 0.02em;
@@ -663,13 +704,11 @@ section h2 {
   font-weight: 500;
   color: var(--color-primary);
   white-space: nowrap;
-  font-size: 1rem;
   font-family: var(--font-family-heading);
   letter-spacing: 0.04em;
 }
 
 .menu-card__description {
-  font-size: 0.85rem;
   color: var(--color-text-muted2);
   line-height: 1.7;
   margin-bottom: 0.75rem;
@@ -677,7 +716,6 @@ section h2 {
 }
 
 .menu-card__allergens {
-  font-size: 0.72rem;
   color: var(--color-text-muted2);
   opacity: 0.6;
   letter-spacing: 0.06em;
@@ -738,7 +776,6 @@ section h2 {
 .gallery__intro {
   text-align: center;
   margin: -1.5rem auto 2.5rem;
-  font-size: 0.95rem;
   font-weight: 300;
   color: var(--color-text-muted2);
   line-height: 1.8;
@@ -820,7 +857,7 @@ section h2 {
   border: 1px solid var(--color-border);
   background: var(--color-background);
   color: var(--color-text);
-  font-size: 1.8rem;
+  font-size: var(--fs-md);
   line-height: 1;
   display: flex;
   align-items: center;
@@ -856,10 +893,6 @@ section h2 {
 /* ================================================================
    PRENOTAZIONE
    ================================================================ */
-#prenota {
-  background: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-}
 
 #prenota input,
 #prenota select,
@@ -868,7 +901,6 @@ section h2 {
   border-radius: var(--border-radius);
   padding: 0.85rem 1rem;
   font-family: var(--font-family);
-  font-size: 0.9rem;
   font-weight: 300;
   letter-spacing: 0.04em;
   width: 100%;
@@ -899,7 +931,6 @@ section h2 {
   padding: 1rem;
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 0.78rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   width: 100%;
@@ -916,11 +947,12 @@ section h2 {
    MAPPA TAVOLI
    ================================================================ */
 .floor-map__wrapper {
-  overflow: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--border-radius);
   background: var(--color-card);
   margin-bottom: 1.5rem;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .floor-map__canvas {
@@ -951,7 +983,6 @@ section h2 {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.78rem;
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -979,7 +1010,6 @@ section h2 {
   background: transparent;
   color: var(--color-text-muted2);
   font-family: var(--font-family);
-  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1001,7 +1031,6 @@ section h2 {
   background: color-mix(in srgb, var(--color-primary) 5%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-primary) 20%, transparent);
   border-radius: var(--border-radius);
-  font-size: 0.875rem;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
@@ -1017,7 +1046,6 @@ section h2 {
   border: none;
   color: var(--color-text-muted2);
   font-family: var(--font-family);
-  font-size: 0.75rem;
   letter-spacing: 0.08em;
   cursor: pointer;
   text-decoration: underline;
@@ -1055,7 +1083,6 @@ section h2 {
 
 .contact-card__title {
   font-family: var(--font-family-heading);
-  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   margin: 0 0 1.25rem;
@@ -1078,14 +1105,12 @@ section h2 {
   display: flex;
   align-items: flex-start;
   gap: 0.85rem;
-  font-size: 0.9rem;
   font-weight: 300;
   color: var(--color-text);
   line-height: 1.6;
 }
 
 .contact-list__icon {
-  font-size: 1rem;
   flex-shrink: 0;
   margin-top: 2px;
   color: var(--color-secondary);
@@ -1104,7 +1129,6 @@ section h2 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1124,7 +1148,6 @@ section h2 {
   font-weight: 500;
   letter-spacing: 0.04em;
   font-family: var(--font-family-heading);
-  font-size: 1rem;
 }
 
 /* ================================================================
@@ -1134,7 +1157,13 @@ section h2 {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--color-background);
+background-color: var(--color-background);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(187, 100%, 86%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(199, 100%, 88%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(180, 48%, 90%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;  color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1148,24 +1177,23 @@ section h2 {
 }
 
 .loader__logo {
-  width: 72px;
-  height: 72px;
+  width: calc(var(--fs-xl)*4);
+  height: calc(var(--fs-xl)*4);
   border-radius: 50%;
   object-fit: cover;
   animation: loader-pulse 2s ease-in-out infinite;
 }
 
 .loader__logo-placeholder {
-  width: 72px;
-  height: 72px;
+  width: var(--fs-xl);
+  height: var(--fs-xl);
   border-radius: 50%;
   background: var(--color-primary);
-  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-family-heading);
-  font-size: 1.8rem;
+  font-size: var(--fs-lg);
   font-weight: 300;
   animation: loader-pulse 2s ease-in-out infinite;
 }
@@ -1217,9 +1245,11 @@ section h2 {
    FOOTER
    ================================================================ */
 .footer {
-  background: var(--color-background);
-  border-top: 1px solid var(--color-border);
+  background: var(--shadow);
   margin-top: 4rem;
+  border-top: 2px solid;
+  border-image: linear-gradient(to right, transparent, var(--color-primary), transparent) 1;
+
 }
 
 .footer__inner {
@@ -1247,7 +1277,7 @@ section h2 {
 
 .footer__restaurant-name {
   font-family: var(--font-family-heading);
-  font-size: 1.25rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.06em;
   color: var(--color-text);
@@ -1255,8 +1285,8 @@ section h2 {
 }
 
 .footer__restaurant-desc {
-  font-size: 0.85rem;
   font-weight: 300;
+  font-size: var(--fs-mini);
   color: var(--color-text-muted2);
   line-height: 1.7;
   margin: 0.25rem 0 0.5rem;
@@ -1264,14 +1294,12 @@ section h2 {
 }
 
 .footer__restaurant-address {
-  font-size: 0.85rem;
   font-weight: 300;
   color: var(--color-text-muted2);
   margin: 0;
 }
 
 .footer__contact-link {
-  font-size: 0.85rem;
   font-weight: 300;
   color: var(--color-text-muted2);
   text-decoration: none;
@@ -1284,7 +1312,6 @@ section h2 {
 }
 
 .footer__col-title {
-  font-size: 0.7rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -1299,8 +1326,7 @@ section h2 {
 }
 
 .footer__nav-link {
-  font-size: 0.875rem;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--color-text-muted2);
   text-decoration: none;
   letter-spacing: 0.04em;
@@ -1309,6 +1335,7 @@ section h2 {
 
 .footer__nav-link:hover {
   color: var(--color-primary);
+  font-weight: 900;
 }
 
 .footer__social {
@@ -1321,7 +1348,6 @@ section h2 {
   display: flex;
   align-items: center;
   gap: 0.7rem;
-  font-size: 0.875rem;
   font-weight: 300;
   color: var(--color-text-muted2);
   text-decoration: none;
@@ -1334,29 +1360,29 @@ section h2 {
 }
 
 .footer__social-icon {
-  width: 16px;
-  height: 16px;
+  width: var(--fs-sm);
+  height: var(--fs-sm);
   flex-shrink: 0;
 }
 
 .footer__bottom {
   border-top: 1px solid var(--color-border);
-  padding: 1.5rem 2rem;
+  padding: var(--gap-sm);
   max-width: var(--max-width);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: var(--gap-md);
 }
 
 .footer__copyright {
-  font-size: 0.78rem;
   font-weight: 300;
   letter-spacing: 0.06em;
   color: var(--color-text-muted2);
   margin: 0;
+  font-size: var(--fs-mini);
 }
 
 .footer__powered {
@@ -1365,9 +1391,9 @@ section h2 {
   gap: 0.4rem;
   text-decoration: none;
   color: var(--color-text-muted2);
-  font-size: 0.78rem;
   font-weight: 300;
   transition: opacity 0.2s;
+  font-size: var(--fs-mini);
 }
 
 .footer__powered:hover {
@@ -1375,7 +1401,7 @@ section h2 {
 }
 
 .footer__promethea-logo {
-  height: 16px;
+  height: var(--fs-sm);
   width: auto;
   object-fit: contain;
 }
@@ -1383,12 +1409,12 @@ section h2 {
 .footer__platea-link {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.78rem;
+  gap: var(--gap-sm);
   font-weight: 300;
   letter-spacing: 0.08em;
   color: var(--color-text-muted2);
   text-decoration: none;
+  font-size: var(--fs-mini);
   border: 1px solid var(--color-border);
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
@@ -1401,8 +1427,8 @@ section h2 {
 }
 
 .footer__platea-icon {
-  width: 13px;
-  height: 13px;
+  width: var(--fs-sm);
+  height: var(--fs-sm);
   flex-shrink: 0;
 }
 
@@ -1426,17 +1452,14 @@ section h2 {
    RESPONSIVE GLOBALE
    ================================================================ */
 @media (max-width: 768px) {
-  :root {
-    --section-padding: 4rem 1.25rem;
+
+  .nav__logo-text{
+    font-size: var(--fs-sm);
   }
 
   .hero--bg-image {
     min-height: 80vh;
     background-attachment: scroll;
-  }
-
-  .hero--bg-image .hero__title {
-    font-size: clamp(2.4rem, 10vw, 3.5rem);
   }
 
   .nav__links {
@@ -1479,9 +1502,7 @@ section h2 {
 
   .footer__bottom {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 1rem 1.25rem;
+    align-items: center;
   }
 }
 
@@ -1512,14 +1533,14 @@ section h2 {
 .contact-card {
   background-color: transparent;
   background-image:
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
-    linear-gradient(var(--color-primary), var(--color-primary)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
+    linear-gradient(var(--oro), var(--oro)),
     var(--color-card);
   background-size:
     1px 16px,
@@ -1559,4 +1580,33 @@ section h2 {
     100% 100%;
   box-shadow: 0 8px 32px rgba(34, 34, 34, 0.07);
   transform: translateY(-2px);
+}
+
+.sfondomare {
+  background-color: #f0f9ff;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(197, 100%, 82%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(187, 100%, 86%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(199, 100%, 88%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(180, 48%, 90%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;
+}
+
+
+/* 
+   SCROLLBAR â€” subtle Raycast style
+ */
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: var(--border-radius);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
 }

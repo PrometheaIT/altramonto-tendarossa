@@ -62,6 +62,9 @@ section > *:not(.hero__overlay):not(.hero__video) {
   margin-right: auto;
 }
 
+.section-padding { padding: var(--gap-xl) var(--section-padding);}
+
+
 /* ================================================================
    DECORATIVE ELEMENTS
    ================================================================ */
